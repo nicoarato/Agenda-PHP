@@ -1,0 +1,17 @@
+/* custom properties*/
+
+:root {
+    --primario: #C2185b;
+    --secundario: #FFC107;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+    background-color:   #C2185b;
+}
