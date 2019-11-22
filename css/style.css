@@ -40,6 +40,37 @@ body{
     border-radius: .5rem;
 }
 
+.barra{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+}
+
+/*Botones */
+.btn {
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.btn-editar {
+    color: var(--secundario);
+}
+.btn-borrar {
+    color: var(--primario);
+}
+
+.volver {
+    background-color: var(--secundario);
+    border-radius: .5rem;
+    text-align: center;
+    color: black;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: .5rem;
+
+}
+
+
 h1, h2 {
     font-family: var(--fuenteSecundaria);
     text-align: center;
@@ -203,14 +234,3 @@ legend span {
     border: none;
 }
 
-.btn {
-    font-size: 2rem;
-    text-decoration: none;
-}
-
-.btn-editar {
-    color: var(--secundario);
-}
-.btn-borrar {
-    color: var(--primario);
-}
