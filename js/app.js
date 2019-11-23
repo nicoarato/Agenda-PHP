@@ -13,16 +13,55 @@ function leerFormulario(e){
     //leer los datos de los inputs
     const   nombre = document.querySelector('#nombre').value,
             empresa = document.querySelector('#empresa').value,
-            telefono = document.querySelector('#telefono').value;
+            telefono = document.querySelector('#telefono').value,
+            accion = document.querySelector('#accion').value;
 
     if(nombre === '' || empresa === '' || telefono === '' ){
         //2 parametros texto y clases
         mostrarNotificacion('Todos los campos son obligatorios', 'error' );
         //mostrarNotificacion('Contacto correcto', 'error' );
     }else {
+        //pasa la validacion crear llamado a Ajax
+        const infoContacto = new FormData();
+        infoContacto.append('nombre', nombre);
+        infoContacto.append('empresa', empresa);
+        infoContacto.append('telefono', telefono);
+        infoContacto.append('accion', accion);
 
-        console.log(nombre);
+        //console.log(...infoContacto);
+        if(accion === 'crear'){
+            //crear nuevo contacto
+            insertarBD(infoContacto);
+        }else{
+            //editar contacto
+
+        }
     }
+}
+
+/*inserta en la bdatos via ajax */
+function insertarBD(datos){
+    //llamado a ajax
+    
+    //crear el objeto
+    const xhr = new XMLHttpRequest(); 
+
+    //abrir la conexion
+    xhr.open('POST', 'includes/modelos/modelo-contacto.php', true );
+
+    //pasar los datos
+    xhr.onload = function(){
+        if(this.status === 200){
+            console.log(JSON.parse(xhr.responseText));
+
+            //leemos la respuesta de php
+            const respuesta = JSON.parse(xhr.responseText);
+            console.log(respuesta.empresa);
+        }
+    }
+
+    //enviar datos
+    xhr.send(datos);
 }
 
 //notificiacion en pantalla.
