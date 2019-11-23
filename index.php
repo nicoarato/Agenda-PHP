@@ -1,4 +1,7 @@
-<?php include 'includes/layout/header.php'; ?>
+<?php 
+    include 'includes/funciones/funciones.php';
+    include 'includes/layout/header.php'; 
+?>
 
 <div class="contenedor-barra">
     <h1>Agenda de contactos</h1>
@@ -35,48 +38,40 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                        $contactos = obtenerContactos(); 
+                        var_dump($contactos);
+
+                        if($contactos->num_rows >= 1){ 
+                            
+                            foreach($contactos as $contacto){
+
+                            ?>
+                            
+
+
                     <tr>
-                        <td>Nicolas</td>
-                        <td>Ripcurl</td>
-                        <td>1235456</td>
+                        <td><?php echo $contacto['nombre']?></td>
+                        <td><?php echo $contacto['empresa']?></td>
+                        <td><?php echo $contacto['telefono']?></td>
                         <td>
-                            <a href="editar.php?id=1" class="btn-editar btn">
+                            <a href="editar.php?id=<?php echo $contacto['id']?>" class="btn-editar btn">
                                 <i class="fas fa-user-edit"></i>
                             </a>
-                            <button data-id="1" type="button" class="btn-borrar btn">
+                            <button data-id="<?php echo $contacto['id']?>" type="button" class="btn-borrar btn">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
 
                     </tr>
-                    <tr>
-                        <td>Leonardo</td>
-                        <td>Ripcurl</td>
-                        <td>1235456</td>
-                        <td>
-                            <a href="editar.php?id=1" class="btn-editar btn">
-                                <i class="fas fa-user-edit"></i>
-                            </a>
-                            <button data-id="1" type="button" class="btn-borrar btn">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
 
-                    </tr>
-                    <tr>
-                        <td>PEdrito</td>
-                        <td>Ripcurl</td>
-                        <td>1235456</td>
-                        <td>
-                            <a href="editar.php?id=1" class="btn-editar btn">
-                                <i class="fas fa-user-edit"></i>
-                            </a>
-                            <button data-id="1" type="button" class="btn-borrar btn">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
+                    <?php    } 
+                } ?>
 
-                    </tr>
+
+
+
+
                 </tbody>
             </table>
         </div>
