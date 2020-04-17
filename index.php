@@ -23,7 +23,7 @@
         <input type="text" id="buscar" class="buscador sombra" placeholder="Buscar contactos...">
 
         <p class="total-contactos">
-            <span>2</span>
+            <span></span>
             Contactos
         </p>
 
@@ -40,7 +40,7 @@
                 <tbody>
                     <?php 
                         $contactos = obtenerContactos(); 
-                        var_dump($contactos);
+
 
                         if($contactos->num_rows >= 1){ 
                             

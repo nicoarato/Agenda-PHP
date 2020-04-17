@@ -1,5 +1,6 @@
 const formularioContactos = document.querySelector('#contacto'),
-    listadoContactos = document.querySelector('#listado-contactos tbody');
+    listadoContactos = document.querySelector('#listado-contactos tbody'),
+    inputBuscador = document.querySelector('#buscar');
 
 eventListeners();
 
@@ -12,6 +13,12 @@ function eventListeners() {
 
         listadoContactos.addEventListener('click', eliminarContacto);
     }
+
+    //Listener de buscador
+    inputBuscador.addEventListener('input', buscarContactos);
+
+    //cantidad de contactos en pantalla
+    numeroContactos();
 }
 
 function leerFormulario(e) {
@@ -41,6 +48,10 @@ function leerFormulario(e) {
             insertarBD(infoContacto);
         } else {
             //editar contacto
+            //leer id
+            const idRegistro = document.querySelector('#id').value;
+            infoContacto.append('id', idRegistro);
+            actualizarRegistro(infoContacto);
 
         }
     }
@@ -114,12 +125,45 @@ function insertarBD(datos) {
 
             //mostrar la notficacion
             mostrarNotificacion('Contacto creado correctamente', 'correcto');
+
+            //Actualizar numero de contactos
+            numeroContactos();
         }
     }
 
     //enviar datos
     xhr.send(datos);
 }
+
+function actualizarRegistro(datos) {
+    //crear obj
+    const xhr = new XMLHttpRequest();
+    //abrir la conexion
+    xhr.open('POST', 'includes/modelos/modelo-contacto.php', true);
+    //leer la respuesta
+    xhr.onload = function() {
+            if (this.status === 200) {
+                const respuesta = JSON.parse(xhr.responseText);
+                if (respuesta.respuesta === 'correcto') {
+                    //mostrar notificacion de correcto
+                    mostrarNotificacion('Contacto Editado correctamente', 'correcto')
+                } else {
+                    //mostrar notificación error
+                    mostrarNotificacion('No se realizaron cambios', 'error');
+                    console.log(respuesta);
+                }
+
+                //despues de 3 segundos redirecciones
+                setTimeout(() => {
+                    window.location.href = 'index.php'
+                }, 3500);
+            }
+        }
+        //enviar la peticion
+    xhr.send(datos);
+
+}
+
 
 //Eliminar el contacto
 function eliminarContacto(e) {
@@ -148,6 +192,9 @@ function eliminarContacto(e) {
 
                             //mostrar notificacion
                             mostrarNotificacion('Contacto eliminado.', 'correcto');
+
+                            //actualizar numero de contactos
+                            numeroContactos();
                         } else {
                             //mostramos una notificacion
                             mostrarNotificacion('Hubo un error...', 'error');
@@ -184,4 +231,34 @@ function mostrarNotificacion(mensaje, clase) {
 
         }, 3000);
     }, 100);
+}
+
+//buscar contactos
+function buscarContactos(e) {
+    const expresion = new RegExp(e.target.value, "i"),
+        registros = document.querySelectorAll('tbody tr');
+    registros.forEach(registro => {
+        registro.style.display = 'none';
+
+        if (registro.childNodes[1].textContent.replace(/\s/g, " ").search(expresion) != -1) {
+            registro.style.display = 'table-row';
+        }
+        numeroContactos();
+    })
+}
+
+//muestra el numero de contactos
+function numeroContactos() {
+    const totalContactos = document.querySelectorAll('tbody tr'),
+        contenedorNumero = document.querySelector('.total-contactos span');
+
+    let total = 0;
+
+    totalContactos.forEach(contacto => {
+        if (contacto.style.display === '' || contacto.style.display === 'table-row') {
+            total++;
+        }
+    })
+    //console.log(total);
+    contenedorNumero.textContent = total;
 }
