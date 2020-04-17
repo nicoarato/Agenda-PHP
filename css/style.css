@@ -9,52 +9,62 @@
 }
 
 html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
+    box-sizing: border-box;
 }
 
-body{
-    background-color:  var(--primario);
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: var(--primario);
     font-family: var(--fuentePrimaria);
 }
 
 .contenedor {
     max-width: 1100px;
     margin: 0 auto;
-
 }
 
 .bg-amarillo {
     background-color: var(--secundario);
 }
-.bg-blanco{
+
+.bg-blanco {
     background-color: white;
 }
 
 .sombra {
-    -webkit-box-shadow: 0px 9px 22px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 9px 22px -6px rgba(0,0,0,0.75);
-    box-shadow: 0px 9px 22px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 9px 22px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 9px 22px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 9px 22px -6px rgba(0, 0, 0, 0.75);
     border-radius: .5rem;
 }
 
-.barra{
+.barra {
     display: grid;
     grid-template-columns: 100px 1fr;
     align-items: center;
 }
 
+
 /*Botones */
+
 .btn {
     font-size: 2rem;
     text-decoration: none;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn-editar {
     color: var(--secundario);
 }
+
 .btn-borrar {
     color: var(--primario);
 }
@@ -67,23 +77,21 @@ body{
     font-weight: 700;
     font-size: 1.2rem;
     padding: .5rem;
-
 }
 
-
-h1, h2 {
+h1,
+h2 {
     font-family: var(--fuenteSecundaria);
     text-align: center;
     margin: 0;
-
 }
 
-h1{
+h1 {
     padding: 20px;
     color: white;
 }
 
-h2{
+h2 {
     font-size: 2rem;
     color: var(--primarioOscuro);
 }
@@ -113,12 +121,10 @@ legend span {
 }
 
 @media (min-width: 768px) {
-
     .campos {
         display: flex;
         justify-content: space-between;
     }
-    
     .campo {
         flex: 0 0 calc(33.3% - 1rem);
     }
@@ -128,7 +134,7 @@ legend span {
     padding: .5rem;
 }
 
-.campo label{
+.campo label {
     font-size: 1.2rem;
 }
 
@@ -158,16 +164,17 @@ legend span {
     flex: 1;
 }
 
-.campo input[type="submit"]:hover{
+.campo input[type="submit"]:hover {
     cursor: pointer;
     background-color: var(--primarioOscuro);
 }
 
 @media (min-width: 768px) {
-    .campo input[type="submit"]{
+    .campo input[type="submit"] {
         flex: 0 0 auto;
     }
 }
+
 
 /*Listado de contactos*/
 
@@ -176,12 +183,12 @@ legend span {
     margin-top: 3rem;
 }
 
-.contenedor-contactos{
+.contenedor-contactos {
     max-width: 800px;
     margin: 4rem auto 0 auto;
 }
 
-.total-contactos{
+.total-contactos {
     font-family: var(--fuenteSecundaria);
     margin: 2rem 0;
     text-align: center;
@@ -189,12 +196,12 @@ legend span {
     font-size: 2rem;
 }
 
-.total-contactos span{
+.total-contactos span {
     font-size: 3rem;
     font-weight: 900;
 }
 
-.buscador{
+.buscador {
     width: 100%;
     height: 4rem;
     padding: 1rem;
@@ -202,37 +209,40 @@ legend span {
     margin: 2rem 0;
 }
 
+
 /* .contenedor-tabla{
     overflow: scroll;
 } */
 
-.listado-contactos{
+.listado-contactos {
     width: 100%;
     margin-top: 1rem;
     border-collapse: collapse;
 }
 
-.listado-contactos thead{
+.listado-contactos thead {
     background-color: var(--primario);
     color: white;
     text-transform: uppercase;
 }
 
-.listado-contactos thead th{
+.listado-contactos thead th {
     padding: 1rem 0;
 }
 
-.listado-contactos tbody td{
+.listado-contactos tbody td {
     padding: .5rem;
 }
 
-.listado-contactos tbody td:nth-child(4){
+.listado-contactos tbody td:nth-child(4) {
     text-align: center;
 }
-.listado-contactos button{
+
+.listado-contactos button {
     background-color: transparent!important;
     border: none;
 }
+
 
 /*Notificaciones*/
 
@@ -241,21 +251,22 @@ legend span {
     top: 1rem;
     right: 1rem;
     padding: 1rem 3rem;
-    transition: opacity .5s ease-in ;
+    transition: opacity .5s ease-in;
 }
 
-.visible{
+.visible {
     opacity: 1;
 }
+
 
 /* colores de notificacion*/
 
 .correcto {
-    background-color: rgb(179,241,117);
+    background-color: rgb(179, 241, 117);
     color: green;
 }
 
 .error {
-    background-color: rgb(238,148,166);
-    color: rgb(163,0,33);
+    background-color: rgb(238, 148, 166);
+    color: rgb(163, 0, 33);
 }
